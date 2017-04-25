@@ -1,0 +1,5 @@
+if(!homeKey, text({Ahah!}), text({You already took the keys.}))
+if(!homeKey, text({So they did hide them! Your own keys!}))
+enable(Home_door, false)
+script(Couch, Couch)
+flag(homeKey, true)

@@ -1,0 +1,3 @@
+if(!sawDoor, text({It looks rather comfy...}), text({Everyting disappears in the bottomless pits that is the couch` so the keys should be here` right?}))
+if(!sawDoor, text({To bad you never use it.}), text({Except` there's nothing but crumbs and random junk between the cushions.}))
+if(sawDoor, tex({So no keys.}))

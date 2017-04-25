@@ -1,0 +1,12 @@
+//shake()
+sound(Rumble)
+enable(Smoke, true)
+//wait(2)
+{...}
+{What was that?}
+{I don't think you're supposed to go that far.}
+{Did you break something?}
+{Are the doorms being attacked?}
+{Is this one of those home-made films where the screen keeps shaking?}
+{...}
+{...Are you still sleeping...?}

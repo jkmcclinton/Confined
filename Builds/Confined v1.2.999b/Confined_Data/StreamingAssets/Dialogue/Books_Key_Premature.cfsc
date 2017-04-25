@@ -1,0 +1,11 @@
+{Some random books you were studying.}
+{Wait...}
+{What's this?}
+{Why were your keys in here? Next to some horrible excuses for memes?}
+{You'll have to remember to erase those sometime...}
+
+script(Remote, Useless)
+script(Couch, Couch)
+script(Book_Green, Book_Scribbles)
+enable(Home_door, false)
+flag(homeKey)

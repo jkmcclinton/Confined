@@ -1,0 +1,8 @@
+if(!sawDoor, text({...Locked? From the outside?}), text({It's locked` but you should be able to open it with your own keys.}))
+if(!sawDoor, text({Must be another prank.}), text({They should be around here somewhere...}))
+if(!sawDoor, text({Still` you should be able to open it with your keys.}))
+if(!sawDoor, text({But where'd you leave them?}))
+flag(sawDoor, true)
+//if(!remote, scriptPremature)
+script(Book_Green, Books_Key_Premature)
+script(Remote, Remote)

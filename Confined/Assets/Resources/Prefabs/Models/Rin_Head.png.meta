@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: bccabb304f6e9764da33e913492ef13b
+timeCreated: 1493031584
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Rin_Head_45
+    21300002: Rin_Head_135
+    21300004: Rin_Head_225
+    21300006: Rin_Head_315
+    21300008: Rin_Head_0
+    21300010: Rin_Head_90
+    21300012: Rin_Head_180
+    21300014: Rin_Head_270
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rin_Head_45
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.51666665, y: 0.062470615}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rin_Head_135
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.48333335, y: 0.10395582}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rin_Head_225
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.48333335, y: 0.084458806}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rin_Head_315
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 1
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.51666665, y: 0.042680964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rin_Head_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 149
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.52277774, y: 0.045414276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rin_Head_90
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 149
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.4769841, y: 0.108273596}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rin_Head_180
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 149
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.4772222, y: 0.10263695}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rin_Head_270
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 149
+        width: 90
+        height: 147
+      alignment: 9
+      pivot: {x: 0.52301586, y: 0.08367961}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

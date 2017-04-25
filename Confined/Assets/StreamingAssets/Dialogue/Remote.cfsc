@@ -1,0 +1,16 @@
+script(TV, TV_good)
+script(Book_Green, Books_Key)
+script(Remote, Remote_Bad)
+flag(remote)
+{Well, you're already late to class, so watching a little TV can't hurt, can it?}
+interact()
+sound(Static)
+enable(TV_Anim, true)
+enable(Home_door, false)
+{....}
+{Oops, now its on auto search and won't go back.}
+{Wait a second... was that a meme?}
+{How...?}
+{...}
+{That's it!}
+{The green book!}

@@ -1,0 +1,13 @@
+script(TV, TV_good)
+script(Book_Green, Books_Key_Early)
+script(Remote, Remote_Bad)
+flag(remote)
+{Well, you're already late to class, so watching a little TV can't hurt, can it?}
+interact()
+sound(Static)
+enable(TV_Anim, true)
+{....}
+{Being the clumsy person you are, you accidently hit autoplay!}
+{Now the TV's just flipping through... wait...}
+{Here come dat boi? ...Didn't you doodle that in one of your textbooks?}
+{Better go erase that now before you forget!}

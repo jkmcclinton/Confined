@@ -1,0 +1,7 @@
+{..so THAT'S what happened last night...}
+{When you got back, you and your friends definitely covered the front page of the book with memes.}
+{But... why are your keys here?}
+script(Book_Green, Book_Scribbles)
+enable(Home_door, false)
+script(Couch, Couch)
+flag(homeKey, true)
