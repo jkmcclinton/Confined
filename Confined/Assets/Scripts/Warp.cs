@@ -57,8 +57,8 @@ public class Warp : MonoBehaviour {
                         sound.playSound("Close", false);
                         goal.show();
                         if (door != null) {
-                            Debug.Log(sc.current.name + " [" + door.baseRoom.name + "|" + door.destRoom.name + "]");
-                            if (sc.current == door.baseRoom) door.unTurn();
+                            Debug.Log(sc.Room.name + " [" + door.baseRoom.name + "|" + door.destRoom.name + "]");
+                            if (sc.Room == door.baseRoom) door.unTurn();
                             else door.Turn();
                             door.open();
                         }
@@ -79,7 +79,10 @@ public class Warp : MonoBehaviour {
         float w = body.size.x;
         if (!go.name.ToLower().Equals("interactspace")) return;
         if (goal.state != RoomIdentifier.StateType.HIDDEN) return;
-            Vector3 dir = Vector3.zero;
+
+        //player.door = this;
+
+        Vector3 dir = Vector3.zero;
         switch (direction) {
             case Direction.North: dir = Vector3.forward; w = body.size.z;  break;
             case Direction.East: dir = Vector3.right; break;
@@ -112,5 +115,6 @@ public class Warp : MonoBehaviour {
         GameObject go = collider.gameObject;
         if (!go.name.ToLower().Equals("interactspace")) return;
         if (arrow != null) Destroy(arrow);
+        //player.door = null;
     }
 }

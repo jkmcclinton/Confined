@@ -1,0 +1,7 @@
+{Looks like someone was getting ready to move out.}
+{But so early? It's the middle of the semester!}
+{Something must have happened that made one of the girls want to leave so soon.}
+{Curious, you dig through the box and find... Sandra's key!}
+interact()
+flag(SandraKey)
+enable(Hall_door_Sandra, false)

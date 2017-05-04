@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
     SoundController sound;
     GameObject console;
     public Animator animator { get { return anim; } }
+    //public Warp door;
 
     public float pitch;
     public float speed = 1;
@@ -89,7 +90,7 @@ public class Player : MonoBehaviour {
                 moveDir.x = desiredMove.x * speed;
                 moveDir.z = desiredMove.z * speed;
 
-                moveDir.y = -1;
+                moveDir.y = -10;
                 cc.Move(moveDir * Time.fixedDeltaTime);
             } else {
                 anim.SetBool("Moving", false);
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour {
     }
 
     private Vector3 handleInput() {
-        if (Input.GetButton("Interact") && currentInteractable!=null) {
+        if (Input.GetButton("Interact") && currentInteractable!=null/* && door==null*/) {
             // start dialogue system
             AudioClip clip = Resources.Load("Sounds/Open") as AudioClip;
                 src.PlayOneShot(clip);

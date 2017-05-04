@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomIdentifier : MonoBehaviour {
 
     static float hideLoc = -40;
-    private float t = .1f;
+    private float speed = .2f;
 
     Vector3 hid, sho;
     SceneController sc;
@@ -17,7 +17,8 @@ public class RoomIdentifier : MonoBehaviour {
 
     public StateType state { get { return stateType; } }
 
-    Shader shader;
+    //Shader shader;
+    int albedo;
     Dictionary<MeshRenderer, Shader> cols;
 
     public enum StateType {
@@ -39,7 +40,11 @@ public class RoomIdentifier : MonoBehaviour {
         foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>()) {
             cols.Add(mr, mr.material.shader);
         }
-        shader = Resources.Load<Shader>("Materials/Model");
+
+        //GameObject transparent = GameObject.Find("TRANSPARENT_SHADER");
+        //if(transparent!=null) shader = transparent.GetComponent<MeshRenderer>().material.shader;
+        albedo = Shader.PropertyToID("_Color");
+        
         if (state == StateType.HIDING || state == StateType.HIDDEN) {
             reset();
             if (state == StateType.HIDDEN)
@@ -54,14 +59,17 @@ public class RoomIdentifier : MonoBehaviour {
 
     void disappear() {
         foreach (KeyValuePair<MeshRenderer, Shader> e in cols) {
-            Color c = e.Key.material.color;
-            e.Key.material.color = new Color(c.r, c.g, c.b, 0);
+            Color c = e.Key.material.GetColor(albedo);
+            e.Key.material.SetColor(albedo, new Color(c.r, c.g, c.b, 0));
+            e.Key.enabled = false;
+            //e.Key.material.SetFloat("_Mode", 3);
         }
     }
 
     void reappear() {
         foreach (KeyValuePair<MeshRenderer, Shader> e in cols) {
             e.Key.material.shader = e.Value;
+            //e.Key.material.SetFloat("_Mode", 0);
         }
     }
 
@@ -71,28 +79,28 @@ public class RoomIdentifier : MonoBehaviour {
                 transform.position = hid;
                 break;
             case StateType.HIDING:
-                transform.position = Vector3.Lerp(transform.position, hid, t/3f);
+                transform.position = Vector3.Lerp(transform.position, hid, speed);
                 if (Vector3.Distance(transform.position, hid) < .02f) {
                     stateType = StateType.HIDDEN;
                     disappear();
                 } else {
                     foreach (KeyValuePair<MeshRenderer, Shader> e in cols) {
-                        Color c = e.Key.material.color;
-                        e.Key.material.color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, 0, t));
+                        Color c = e.Key.material.GetColor(albedo);
+                        e.Key.material.SetColor(albedo, new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, 0, speed)));
                     }
                 }
                 break;
             case StateType.SHOWING:
-                transform.position = Vector3.Lerp(transform.position, sho, t);
+                transform.position = Vector3.Lerp(transform.position, sho, speed);
                 if (Vector3.Distance(transform.position, sho) < .02f) {
                     stateType = StateType.SHOWN;
                     reappear();
                 } else {
                     foreach (KeyValuePair<MeshRenderer, Shader> e in cols) {
                         Color c;
-                            c = e.Key.material.color;
-                            e.Key.material.color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, 1, t));
-                    }
+                            c = e.Key.material.GetColor(albedo);
+                            e.Key.material.SetColor(albedo, new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, 1, speed)));
+                    } 
                 }
                 break;
             case StateType.SHOWN:
@@ -104,6 +112,9 @@ public class RoomIdentifier : MonoBehaviour {
     public void show() {
         stateType = StateType.SHOWING;
 
+        foreach (KeyValuePair<MeshRenderer, Shader> e in cols) {
+            e.Key.enabled=true;
+        }
         //fader.fadeIn();
     }
 
@@ -115,17 +126,9 @@ public class RoomIdentifier : MonoBehaviour {
     }
 
     void reset() {
-        foreach (KeyValuePair<MeshRenderer, Shader> e in cols) {
-            e.Key.material.shader = shader;
-        }
-    }
-
-    void OnTriggerEnter(Collider coll) {
-        GameObject go = coll.gameObject;
-        if (!go.name.ToLower().Equals("interactspace")) return;
-        sc.current = this;
-        if(music!=null)mc.song = music;
-        sc.setRoom(this);
+        //foreach (KeyValuePair<MeshRenderer, Shader> e in cols) {
+            //e.Key.material.shader = shader;
+        //}
     }
 
     void OnTriggerExit(Collider coll) {

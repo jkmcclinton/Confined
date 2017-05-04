@@ -10,7 +10,11 @@ public class Vars {
 
     static Vars() {
         SCRIPT_LIST = new Dictionary<string, string>();
-        loadList(Application.streamingAssetsPath +"/Dialogue", ".cfsc", SCRIPT_LIST);
+        if (Application.isWebPlayer) {
+
+        } else {
+            loadList(Application.streamingAssetsPath + "/Dialogue", ".cfsc", SCRIPT_LIST);
+        }
 
     }
 

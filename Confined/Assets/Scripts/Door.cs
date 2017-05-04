@@ -31,9 +31,14 @@ public class Door : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (baseRoom.state == RoomIdentifier.StateType.HIDING ||
+        // basically if we havent vreated the room yet in the scene
+        if (destRoom != null) {
+            if (baseRoom.state == RoomIdentifier.StateType.HIDING ||
         destRoom.state == RoomIdentifier.StateType.HIDING)
-            close();
+                close();
+        } else 
+            if (baseRoom.state == RoomIdentifier.StateType.HIDING)
+                close();
 	}
 
     public void Turn() {

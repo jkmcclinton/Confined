@@ -12,19 +12,21 @@ public class SceneController : MonoBehaviour {
     private int index = -1;
     public bool analyzing;
     public StateType state = StateType.FADE_IN;
-    public RoomIdentifier current;
 
     public float waitTime;
 
     GameObject c;
     History history;
     Evaluator evaluator;
-    RoomIdentifier rm;
+    RoomIdentifier current;
     Dialogue dialogue;
     SoundController sound;
     Image overlay;
     Player player;
     MusicController mc;
+    CameraShakeController csc;
+
+    public RoomIdentifier Room { get { return current; } set { current = value; } }
 
     public float fadeTime = 1;
     public float fade;
@@ -48,7 +50,7 @@ public class SceneController : MonoBehaviour {
 
     public RoomIdentifier.GroundType groundType {
         get {
-            if (rm != null) return rm.groundType;
+            if (current != null) return current.groundType;
             else return RoomIdentifier.GroundType.Stone;
         }
     }
@@ -62,6 +64,7 @@ public class SceneController : MonoBehaviour {
         player = FindObjectOfType<Player>();
         overlay = GameObject.Find("Canvas").GetComponent<Image>();
         mc = FindObjectOfType<MusicController>();
+        csc = FindObjectOfType<CameraShakeController>();
         cam = GameObject.Find("Main Camera");
     }
 
@@ -71,7 +74,7 @@ public class SceneController : MonoBehaviour {
     void Update() {
         float t = fade / fadeTime;
 
-        if (!isShaking) StartCoroutine(Shake());
+        //if (!isShaking) StartCoroutine(Shake());
 
         switch (state) {
             case StateType.FADE_OUT:
@@ -214,14 +217,16 @@ public class SceneController : MonoBehaviour {
             // shake()
             // shake(amount, dur)
             case "shake":
-                if (args.Length == 0)
-                    ShakeCamera();
-                else {
-                    if(Vars.isNumeric(args[0]) && Vars.isNumeric(args[1])) {
-                        ShakeCamera(float.Parse(args[0]), float.Parse(args[1]));
+                //Debug.Log("args: "+args.Length+":"+args);
+                    csc.Shake();
+                //if (args.Length == 1) {
+                //    //ShakeCamera();
+                //}else {
+                //    if(Vars.isNumeric(args[0]) && Vars.isNumeric(args[1])) {
+                //        //ShakeCamera(float.Parse(args[0]), float.Parse(args[1]));
 
-                    }
-                }
+                //    }
+                //}
                 break;
 
             // script(objName, scriptName)
@@ -298,49 +303,52 @@ public class SceneController : MonoBehaviour {
         overlay.enabled = true;
     }
 
-    public void setRoom(RoomIdentifier rm) { this.rm = rm; }
+    public void setRoom(RoomIdentifier rm) { this.current = rm; }
 
 
     #region camShake
-    void ShakeCamera() {
-        curAmnt = shakeAmount;//Set default (start) values
-        curTime = shakeDuration;//Set default (start) values
-        sound.playSound("Shake", true, .1f);
-        //Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
-        if (!isShaking) StartCoroutine(Shake());
-    }
+    //void ShakeCamera() {
+    //    Debug.Log("SHAKING MEISTER");
+    //    curAmnt = .1f;//Set default (start) values
+    //    curTime = 1f;//Set default (start) values
+    //    Debug.Log(curAmnt + ": " + curTime);
+    //    //sound.playSound("Shake", true, .1f);
+    //    //Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+    //    if (!isShaking) StartCoroutine(Shake());
+    //}
 
-    public void ShakeCamera(float amount, float duration) {
-        shakeAmount = amount;//Add to the current amount.
-        curAmnt += shakeAmount;//Reset the start amount, to determine percentage.
-        shakeDuration = duration;//Add to the current time.
-        curTime += shakeDuration;//Reset the start time.
+    //public void ShakeCamera(float amount, float duration) {
+    //    Debug.Log("SHAKING");
+    //    shakeAmount = amount;//Add to the current amount.
+    //    curAmnt += shakeAmount;//Reset the start amount, to determine percentage.
+    //    shakeDuration = duration;//Add to the current time.
+    //    curTime += shakeDuration;//Reset the start time.
 
-        if (!isShaking) StartCoroutine(Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
-    }
+    //    if (!isShaking) StartCoroutine(Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+    //}
 
-    IEnumerator Shake() {
-        isShaking = true;
+    //IEnumerator Shake() {
+    //    isShaking = true;
 
-        while (curTime > 0.01f) {
-            Vector3 rotationAmount = Random.insideUnitSphere * curAmnt;//A Vector3 to add to the Local Rotation
-            rotationAmount.z = 0;//Don't change the Z; it looks funny.
+    //    while (curTime > 0.01f) {
+    //        Vector3 rotationAmount = Random.insideUnitSphere * curAmnt;//A Vector3 to add to the Local Rotation
+    //        rotationAmount.z = 0;//Don't change the Z; it looks funny.
 
-            shakePercentage = curTime / shakeDuration;//Used to set the amount of shake (% * startAmount).
+    //        shakePercentage = curTime / shakeDuration;//Used to set the amount of shake (% * startAmount).
 
-            curAmnt = shakeAmount * shakePercentage;//Set the amount of shake (% * startAmount).
-            curTime = Mathf.Lerp(curTime, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
+    //        curAmnt = shakeAmount * shakePercentage;//Set the amount of shake (% * startAmount).
+    //        curTime = Mathf.Lerp(curTime, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
 
-            if (smooth)
-                cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation,
-                    Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
-            else
-                cam.transform.localRotation = Quaternion.Euler(rotationAmount);//Set the local rotation the be the rotation amount.
-            yield return null;
-        }
+    //        if (smooth)
+    //            cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation,
+    //                Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
+    //        else
+    //            cam.transform.localRotation = Quaternion.Euler(rotationAmount);//Set the local rotation the be the rotation amount.
+    //        yield return null;
+    //    }
 
-        transform.localRotation = Quaternion.identity;//Set the local rotation to 0 when done, just to get rid of any fudging stuff.
-        isShaking = false;
-    }
+    //    transform.localRotation = Quaternion.identity;//Set the local rotation to 0 when done, just to get rid of any fudging stuff.
+    //    isShaking = false;
+    //}
     #endregion
 }
